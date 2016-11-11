@@ -3,13 +3,15 @@ var isPublic = typeof window != "undefined";
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'app', // 'dist',
+    //'app':                        'app', // 'dist',
+    'app':                        'tmsg', 
     '@angular':                   (isPublic)? '@angular' : 'node_modules/@angular',
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app':                        { main: 'main.js',  defaultExtension: 'js' },
+    //'app':                        { main: 'main.js',  defaultExtension: 'js' },
+    'app':                        { main: 'tmsg.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' }
   };
   var ngPackageNames = [
