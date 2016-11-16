@@ -5,7 +5,7 @@ import RepositoryBase = require("./BaseRepository");
 
 class MessageRepository  extends RepositoryBase<IMessageModel> {
     constructor () {
-        super(Messagechema);
+        super(MessageSchema);
     }
 }
 

@@ -11,7 +11,7 @@ class RoomBusiness implements IRoomBusiness {
         this._roomRepository = new RoomRepository();
     }
 
-    create (item: ICounselorModel, callback: (error: any, result: any) => void) {
+    create (item: IRoomModel, callback: (error: any, result: any) => void) {
         this._roomRepository.create(item, callback);
     }
 
@@ -19,7 +19,7 @@ class RoomBusiness implements IRoomBusiness {
         this._roomRepository.retrieve(callback);
     }
 
-    update (_id: string, item: ICounselorModel, callback: (error: any, result: any) => void) {
+    update (_id: string, item: IRoomModel, callback: (error: any, result: any) => void) {
 
         this._roomRepository.findById(_id, (err, res) => {
             if(err) callback(err, res);

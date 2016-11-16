@@ -5,7 +5,7 @@ import RepositoryBase = require("./BaseRepository");
 
 class RoomRepository  extends RepositoryBase<IRoomModel> {
     constructor () {
-        super(Roomchema);
+        super(RoomSchema);
     }
 }
 

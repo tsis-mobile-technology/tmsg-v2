@@ -5,7 +5,7 @@ import MessageModel = require("./../model/MessageModel");
 
 
 class MessageBusiness implements IMessageBusiness {
-    private _counselorRepository: MessageRepository;
+    private _messageRepository: MessageRepository;
 
     constructor () {
         this._messageRepository = new MessageRepository();
