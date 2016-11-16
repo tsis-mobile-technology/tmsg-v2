@@ -1,19 +1,15 @@
-/**
- * Created by Moiz.Kachwala on 15-06-2016.
- */
-
 import express = require("express");
-import HeroController = require("./../../controllers/HeroController");
+import CounselorController = require("./../../controllers/CounselorController");
 
 var router = express.Router();
-class HeroRoutes {
-    private _heroController: HeroController;
+class CounselorRoutes {
+    private _counselorController: CounselorController;
 
     constructor () {
-        this._heroController = new HeroController();
+        this._counselorController = new CounselorController();
     }
     get routes () {
-        var controller = this._heroController;
+        var controller = this._counselorController;
 
         router.get("/", controller.retrieve);
         router.post("/", controller.create);
