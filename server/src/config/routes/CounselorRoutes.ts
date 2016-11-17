@@ -19,9 +19,7 @@ class CounselorRoutes {
 
         return router;
     }
-
-
 }
 
-Object.seal(HeroRoutes);
-export = HeroRoutes;
+Object.seal(CounselorRoutes);
+export = CounselorRoutes;

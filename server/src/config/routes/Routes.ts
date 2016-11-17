@@ -14,7 +14,7 @@ class Routes {
     get routes() {
 
         app.use("/heroes", new HeroRoutes().routes);
-        app.use("/counselor", new CounselorRoutes().routes);
+        app.use("/counselors", new CounselorRoutes().routes);
         
         return app;
     }

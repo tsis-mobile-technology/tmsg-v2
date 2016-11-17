@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
 		// 추후 세션 관리 기능 추가시 사용
 		// 1. 아이디 저장
 		// 2. 로그인 상태 유지 등...
-		this.counselorService.getCounselorSlowly().then(counselors => this.counselors = counselors);
+		//this.counselorService.getCounselorSlowly().then(counselors => this.counselors = counselors);
+		this.counselorService.getCounselors().then(counselors => this.counselors = counselors);
 	}
 
 	ngOnInit(): void {
@@ -60,8 +61,9 @@ export class LoginComponent implements OnInit {
 		issaveid = this.myForm.controls["issaveid"].value;
 		isautologin = this.myForm.controls["isautologin"].value;
 
-		this.onLogin();
-		this.add(loginid, password, issaveid, isautologin);
+		this.onLogin(loginid, password);
+		// 상담사 등록할 때 호출
+		// this.add(loginid, password, issaveid, isautologin);
 		this.gotoMain();
 	}
 
@@ -80,16 +82,26 @@ export class LoginComponent implements OnInit {
 		if (!idx || !loginid || !name) { return; }
 		this.counselorService.create(idx, loginid, status, name, password, issaveid, isautologin)
 			.then(counselor => {
-				this.counselors.push(counselor);
+//				this.counselors.push(counselor);
 				this.selectedCounselor = null;
 			});
 	}
 
-	onLogin(): void {
+	onLogin(loginid: string, password: string): void {
 		// 추후 Database 를 통해 처리 시 HTTP 를 통해 기본 정보를 가져 온다 
 		// 1. 상담사 패스워드 확인 등....
 		// 2. 로그인 이력 처리 등....
 		this.myIdx = 1;
+		this.counselorService.getCounselor(this.myIdx).then(selectedCounselor => this.selectedCounselor = selectedCounselor);
+		console.log("###################");
+		console.log(this.selectedCounselor);
+		console.log("###################");
+
+		if(this.selectedCounselor[0].loginid == loginid) {
+			console.log("find id:" + loginid + ", Ok");
+		} else {
+			console.log("find id:" + loginid + ", Not Ok");
+		}
 	}
 
 	onAuthLogin(): void {

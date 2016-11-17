@@ -7,7 +7,7 @@ import { Counselor } 		from '../models/counselor';
 
 @Injectable()
 export class CounselorService {
-	private counselorsUrl = 'app/counselors'; // URL to web api
+	private counselorsUrl = 'api/counselors'; // URL to web api
 
 	private handleError(error: any): Promise<any> {
 		console.error('An error occurred', error); // for demo purposes only
@@ -21,10 +21,11 @@ export class CounselorService {
 	getCounselors(): Promise<Counselor[]> {
 		//local-data
 		//return Promise.resolve(HEROES);
+		//.then(response => response.json().data as Counselor[])
 		//http-data
 		return this.http.get(this.counselorsUrl)
 					.toPromise()
-					.then(response => response.json().data as Counselor[])
+					.then(response => response.json())
 					.catch(this.handleError);
 	}
 
@@ -33,9 +34,11 @@ export class CounselorService {
 			.then(() => this.getCounselors());
 	}
 
-	getCounselor(idx: number): Promise<Counselor> {
-		return this.getCounselors()
-					.then(counselors => counselors.find(counselor => counselor.idx === idx));
+	getCounselor(idx: number) {
+		return this.http.get(this.counselorsUrl + '/' + idx)
+            .toPromise()
+            .then(res => res.json())
+            .catch(this.handleError);
 	}
 
 	update(counselor: Counselor): Promise<Counselor> {
